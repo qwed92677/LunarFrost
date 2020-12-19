@@ -1,0 +1,28 @@
+projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
+        projectile.localAI[0] += 1f;
+        projectile.alpha = (int)projectile.localAI[0] * 2;
+
+        if (projectile.localAI[0] > 300f)
+            {
+                projectile.Kill();
+            }
+
+        for(int i = 0; i < 200; i++)
+        {
+        NPC target = Main.npc[i];
+        
+           float shootToX = target.position.X + (float)target.width * 0.5f - projectile.Center.X;
+           float shootToY = target.position.Y - projectile.Center.Y;
+           float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+
+           if(distance < 360f && !target.friendly && target.active)
+           {
+               distance = 1.3f / distance;
+   
+               shootToX *= distance * 5;
+               shootToY *= distance * 5;
+
+               projectile.velocity.X = shootToX;
+               projectile.velocity.Y = shootToY;
+           }
+        }

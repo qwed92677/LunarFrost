@@ -1,0 +1,4 @@
+displayName = The Lunar Frost Mod
+author = qwed92677
+version = 0.11
+buildIgnore = *.csproj
